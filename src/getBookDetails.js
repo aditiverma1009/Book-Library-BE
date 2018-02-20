@@ -24,11 +24,6 @@ const getBookData = () => rp('https://5gj1qvkc5h.execute-api.us-east-1.amazonaws
 
 
 module.exports = getBookData;
-
-// we have an array of books whose elements are objects
-// we extract the id and send rp for each id
-// we get response of rating
-// which we add to object as an attribute
 // API 1 - GET - https://5gj1qvkc5h.execute-api.us-east-1.amazonaws.com/dev/allBooks
 // API 2 - GET - https://5gj1qvkc5h.execute-api.us-east-1.amazonaws.com/dev/findBookById/{id}
 
