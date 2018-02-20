@@ -13,7 +13,7 @@ server.route(Routes);
 if (!module.parent) {
   server.start((error) => {
     if (error) {
-      throw (error);
+      console.log('error');
     }
     console.log('Server started at port 8001');
   });

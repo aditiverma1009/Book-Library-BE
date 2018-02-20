@@ -2,21 +2,21 @@
   "development": {
     "username": "aditi",
     "password": "root",
-    "database": "BookLibrary",
+    "database": "booklib",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "aditi",
     "password": "root",
-    "database": "BookLibrary_test",
+    "database": "booklib",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
     "username": "aditi",
-    "password": "root",
-    "database": "BookLibrary_production",
+    "password": null,
+    "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

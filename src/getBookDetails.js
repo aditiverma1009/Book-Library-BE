@@ -14,6 +14,7 @@ const getBookData = () => rp('https://5gj1qvkc5h.execute-api.us-east-1.amazonaws
       for (let i = 0; i < values.length; i += 1) {
         newjsonArray[i].rating = JSON.parse(values[i]).rating;
       }
+
       return (newjsonArray);
     });
   })
