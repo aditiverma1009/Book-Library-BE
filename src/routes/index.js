@@ -3,6 +3,7 @@ const storingBooks = require('./storingBooks');
 const like = require('./like');
 const unlike = require('./unlike');
 const byAuthor = require('./byAuthor');
+const fetchFromDb = require('./fetchFromDb');
 
 const getHelloWorld = (request, response) => {
   response('On root');
@@ -16,4 +17,5 @@ module.exports = [{
   .concat(storingBooks)
   .concat(like)
   .concat(byAuthor)
+  .concat(fetchFromDb)
   .concat(unlike);
