@@ -12,12 +12,22 @@ const handlerfn = (request, response) => {
       rating: ele.rating,
     }));
     Model.books.destroy({ truncate: true });
-    Model.books.bulkCreate(jsonArrayEditted);
-    response('STORED');
+    Model.books.bulkCreate(jsonArrayEditted).then(() => {
+      const jsonArrayBookLike = data.map(ele => ({
+        bookid: ele.id,
+        likes: 0,
+      }));
+      Model.liketallies.destroy({ truncate: true });
+      Model.liketallies.bulkCreate(jsonArrayBookLike).then(() => console.log('Like table created'));
+      return true;
+    });
+    return true;
   });
+  response('stored');
 };
+
 module.exports = [{
   path: '/storingBooks',
-  method: 'GET',
+  method: 'POST',
   handler: handlerfn,
 }];
