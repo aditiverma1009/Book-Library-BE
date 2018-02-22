@@ -3,9 +3,9 @@ const Models = require('../models/');
 
 const fetch = () => {
   console.log('GET /sync');
-  let newBookLibrary = [];
+  const newBookLibrary = [];
   const returned = Models.books.findAll().then((allData) => {
-    newBookLibrary = [];
+    // newBookLibrary = [];
     allData.map((bookData, index) => {
       const bookDataid = bookData.bookid;
       return Models.liketallies.findOne({ where: { bookid: bookDataid } })
