@@ -3,9 +3,9 @@ const Models = require('../models/');
 
 const fetch = () => {
   console.log('GET /sync');
-  let newBookLibrary = [];
-  const returned = Models.books.findAll().then((allData) => {
-    newBookLibrary = [];
+  const newBookLibrary = [];
+  return Models.books.findAll().then(allData =>
+    // newBookLibrary = [];
     allData.map((bookData, index) => {
       const bookDataid = bookData.bookid;
       return Models.liketallies.findOne({ where: { bookid: bookDataid } })
@@ -17,14 +17,8 @@ const fetch = () => {
             rating: bookData.rating,
             likes: records.likes,
           };
-          return newRec;
-        }).then((data) => {
-          newBookLibrary[index] = data;
-          return (newBookLibrary[index]);
+          newBookLibrary.push(newRec);
         });
-    });
-  });
-  console.log(returned);
-  return returned;
+    })).then(returned => Promise.all(returned).then(() => newBookLibrary));
 };
 module.exports = fetch;

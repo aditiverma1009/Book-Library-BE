@@ -1,8 +1,8 @@
-const httpGetData = require('../../src/getBookDetails');
+const fetch = require('../../src/fetch');
 
 
 const getBooksFromAPI1 = (request, response) => {
-  httpGetData().then((books) => {
+  fetch().then((books) => {
     const booksByAuthor = {};
     books.forEach((book) => {
       if (book.Author in booksByAuthor) {
@@ -13,7 +13,7 @@ const getBooksFromAPI1 = (request, response) => {
         booksByAuthor[author].push(book);
       }
     });
-    console.log(booksByAuthor);
+    // console.log(booksByAuthor);
     return booksByAuthor;
   }).then(data => response(data));
 };
