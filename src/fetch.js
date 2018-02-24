@@ -5,8 +5,7 @@ const fetch = () => {
   console.log('GET /sync');
   const newBookLibrary = [];
   return Models.books.findAll().then(allData =>
-    // newBookLibrary = [];
-    allData.map((bookData, index) => {
+    allData.map((bookData) => {
       const bookDataid = bookData.bookid;
       return Models.liketallies.findOne({ where: { bookid: bookDataid } })
         .then((records) => {
