@@ -1,16 +1,16 @@
 const Model = require('../../models');
 
-const handlerfn = (request, reply) => {
-  Model.liketallies.upsert({
-    bookid: request.params.bookid,
-    likes: 1,
-  }).then(() => reply({ message: 'Liked', status_code: 200 }))
-    .catch(() => reply({ message: 'Invalid bookId to like', status_code: 500 }));
-};
+const handlerfn = request => Model.liketallies.findOne({ where: { bookid: request.params.key } })
+  .then(() => {
+    Model.liketallies.update(
+      { likes: 1 },
+      { where: { bookid: request.params.key } },
+    ).then(records => records);
+  });
 
 
 module.exports = [{
-  path: '/like/{bookid}',
+  path: '/like/{key}',
   method: 'POST',
   handler: handlerfn,
 }];

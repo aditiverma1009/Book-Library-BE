@@ -1,15 +1,29 @@
+// const Model = require('../../models');
+
+// const handlerfn = request => Model.liketallies.update(
+//   { likes: 0 },
+//   { where: { bookid: request.params.key } },
+// ).then(records => records);
+
+// module.exports = [{
+//   path: '/unlike/{key}',
+//   method: 'POST',
+//   handler: handlerfn,
+// }];
+
 const Model = require('../../models');
 
-const handlerfn = (request, reply) => {
-  Model.liketallies.upsert({
-    bookid: request.params.bookid,
-    likes: 0,
-  }).then(() => reply({ message: 'Unliked', status_code: 200 }))
-    .catch(() => reply({ message: 'Invalid bookId to unlike', status_code: 500 }));
-};
+const handlerfn = request => Model.liketallies.findOne({ where: { bookid: request.params.key } })
+  .then(() => {
+    Model.liketallies.update(
+      { likes: 0 },
+      { where: { bookid: request.params.key } },
+    ).then(records => records);
+  });
+
 
 module.exports = [{
-  path: '/unlike/{bookid}',
+  path: '/unlike/{key}',
   method: 'POST',
   handler: handlerfn,
 }];
